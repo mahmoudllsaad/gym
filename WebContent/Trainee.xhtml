@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Trainee Details</title>
+</h:head>
+<h:body>
+<center><h2>Trainee Details</h2></center>
+<h:form>
+	<p:dataTable border="1" value="#{traineeBean.listTrainees}" var="trainee">
+		<p:column id="column1">
+			<f:facet name="header">
+				<h:outputText value="ID"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainee.traineeId}"></h:outputText>
+		</p:column>
+		<p:column id="column2">
+			<f:facet name="header">
+				<h:outputText value="name"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainee.traineeName}"></h:outputText>
+		</p:column>
+		<p:column id="column3">
+			<f:facet name="header">
+				<h:outputText value="email"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainee.trianeeEmail}"></h:outputText>
+		</p:column>
+		<p:column id="column4">
+			<f:facet name="header">
+				<h:outputText value="Trainer"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainee.trainer.trainerName}"></h:outputText>
+		</p:column>
+		<p:column id="column5">
+			<f:facet name="header">
+				<h:outputText value="edit trainee"></h:outputText>
+			</f:facet>
+			<p:commandButton value="edit" action="#{traineeBean.updateTrainee(trainee)}" ajax="false"></p:commandButton>
+		</p:column>
+		<p:column id="column6">
+			<f:facet name="header">
+				<h:outputText value="delete trainee"></h:outputText>
+			</f:facet>
+			<p:commandButton value="delete" action="#{traineeBean.deleteTrainee(trainee)}" ajax="false"></p:commandButton>
+		</p:column>	
+	</p:dataTable>
+	<p:button value="Add Trainee" outcome="AddTrainee" />
+ </h:form>
+</h:body>
+</html>

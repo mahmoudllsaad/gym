@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Trainer Details</title>
+</h:head>
+<h:body>
+<center><h2>Trainer Details</h2></center>
+
+<h:form>
+	<p:dataTable border="1" value="#{trainerBean.listTrainers}"  var="trainer">
+		<p:column id="column1">
+			<f:facet name="header">
+				<h:outputText value="ID"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainer.trainerId}"></h:outputText>
+		</p:column>
+		<p:column id="column2">
+			<f:facet name="header">
+				<h:outputText value="name"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainer.trainerName}"></h:outputText>
+		</p:column>
+		<p:column id="column3">
+			<f:facet name="header">
+				<h:outputText value="email"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainer.trianerEmail}"></h:outputText>
+		</p:column>
+		<p:column id="column4">
+			<f:facet name="header">
+				<h:outputText value="cost"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{trainer.trainerCost}"></h:outputText>
+		</p:column>
+		<p:column id="column5">
+			<f:facet name="header">
+				<h:outputText value="edit trainer"></h:outputText>
+			</f:facet>
+			<p:commandButton value="edit" action="#{trainerBean.updateTrainer(trainer)}" ajax="false" validateClient="false"></p:commandButton>
+		</p:column>
+		<p:column id="column6">
+			<f:facet name="header">
+				<h:outputText value="delete trainer"></h:outputText>
+			</f:facet>
+			<p:commandButton value="delete" action="#{trainerBean.deleteTrainer(trainer)}" ajax="false" validateClient="false"></p:commandButton>
+		</p:column>	
+	</p:dataTable>
+      <h:panelGrid columns="1" cellpadding="5">
+       <p:commandButton value="Add Trainer" type="button" onclick="PF('dlg2').show();" />
+       <p:button value="Go To Trainee" outcome="Trainee" />
+       
+      </h:panelGrid>
+        <p:dialog header="New Trainer" widgetVar="dlg2" modal="true" height="100">
+             <p:message for="nameTrainer" />
+             <p:message for="emailTrainer" />
+             <p:message for="costTrainer" />
+            <h:panelGrid border="1" columns="2">
+            <h:outputText value="name*"></h:outputText>
+			<p:inputText id="nameTrainer" value="#{trainerBean.name}" requiredMessage="minimum 3 maximum 20">
+			<f:validateLength minimum="3" maximum="20" />
+			</p:inputText>
+			<h:outputText value="email*"></h:outputText>
+			<p:inputText id="emailTrainer" value="#{trainerBean.email}" requiredMessage="minimum 10 maximum 36">
+			<f:validateLength minimum="10" maximum="36" />
+			</p:inputText>
+			<h:outputText value="cost*"></h:outputText>
+			<p:inputText id="costTrainer" value="#{trainerBean.cost}"  converterMessage="Please enter nummeric value"></p:inputText>
+			<p:commandButton value="Add Trainer" action="#{trainerBean.createTrainer}" ajax="false" validateClient="true"></p:commandButton>
+			</h:panelGrid>
+        </p:dialog> 
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Edit Trainer</title>
+</h:head>
+<h:body>
+
+<h2>edit trainer</h2>
+
+	<h:form>
+
+             <p:message for="nameEditTrainer" />
+             <p:message for="emailEditTrainer" />
+             <p:message for="costEditTrainer" />
+             
+		<p:panelGrid border="1" columns="2">
+			<h:outputText value="name*"></h:outputText>
+			<p:inputText id ="nameEditTrainer" value="#{trainerBean.name}" required="true" requiredMessage="minimum 3 maximum 20 characters">
+			<f:validateLength minimum="3" maximum="20" />
+			</p:inputText>
+			<h:outputText value="email*"></h:outputText>
+			<p:inputText id="emailEditTrainer" value="#{trainerBean.email}" required="true" requiredMessage=" minimum 10 maximum 36 characters">
+			<f:validateLength minimum="10" maximum="36" />
+			</p:inputText>
+			<h:outputText value="cost*"></h:outputText>
+			<p:inputText id="costEditTrainer" value="#{trainerBean.cost}" required="true" converterMessage="Please enter numeric value">
+			</p:inputText>
+			
+			<p:commandButton value="Update Trainer" action="#{trainerBean.actualUpdatetrainer}" ajax="false" validateClient="true"></p:commandButton>
+		</p:panelGrid>
+		
+	</h:form>
+</h:body>
+</html>

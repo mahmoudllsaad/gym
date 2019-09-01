@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Add New Trainee</title>
+</h:head>
+<h:body>
+
+  <h2>Add new trainee</h2>
+            
+	<h:form>    
+             <p:message for="nameTrainee" />
+             <p:message for="emailTrainee" />
+             <p:message for="selectTrainee" />
+
+		<p:panelGrid border="1" columns="2">
+			<h:outputText value="name*"></h:outputText>
+			<p:inputText id="nameTrainee" value="#{traineeBean.name}" required="true" requiredMessage=" 3 minimum character and 20 max .">
+			<f:validateLength minimum="3" maximum="20" />
+			</p:inputText>
+			
+			
+			<h:outputText value="email*"></h:outputText>
+			<p:inputText id="emailTrainee" value="#{traineeBean.email}" required="true" requiredMessage=" 10 minimum character and 36 max .">
+			<f:validateLength minimum="10" maximum="36" />
+			</p:inputText>
+			
+			<h:outputText value="trainer*"></h:outputText>
+			<p:selectOneMenu id="selectTrainee" value="#{traineeBean.trainerId}" required="true" requiredMessage=" Please select at least one choice .">
+			<f:selectItem itemLabel="Select Trainer" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{traineeBean.trainerList}" />
+                
+			</p:selectOneMenu>
+			
+			<p:commandButton value="Add Trainee" action="#{traineeBean.createTrainee}" ajax="false" validateClient="true"></p:commandButton><br/>
+			<p:button value="Not Exist Add Trainer" outcome="Trainer" />
+		</p:panelGrid>
+		
+	</h:form>
+
+</h:body>
+</html>
